@@ -71,12 +71,73 @@ const loadIssues = () => {
         .catch(error => console.error(error));
 };
 
+const loadIssueDetails = async(id) => {
+    const url = `https://phi-lab-server.vercel.app/api/v1/lab/issues`;
+    const response = await fetch(url);
+    const data = await response.json();
+    const allIssues = data.data || data;
+    const issueData = allIssues.find(issue => issue.id == id);
+
+    if (issueData) {
+        displayIssueDetails(issueData);
+    } else {
+        console.error("Could not find an issue with ID:", id);
+    }
+};
+
+const displayIssueDetails = (issue) => {
+    const issueContainer = document.getElementById("details-container");
+    issueContainer.innerHTML = `
+    
+                <h2 class="text-2xl font-bold text-[#1F2937] mb-4"> 
+                    ${issue.title}
+                </h2>
+                
+                <div class="flex items-center gap-2 mb-6 text-sm text-[#64748B]">
+                    <span class=" px-2 py-0.75 rounded-full text-[12px] font-semibold uppercase bg-black text-white">
+                        ${issue.status}
+                    </span>
+                    <span>•</span>
+                    <span class="text-[12px] text-[#64748B]">Opened by ${issue.author}</span>
+                    <span>•</span>
+                    <span class="text-[12px] text-[#64748B]">${issue.createdAt}</span>
+                </div>
+
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <span class="px-3 py-1 rounded-full bg-[#FECACA] border border-[#FEECEC] text-[#EF4444] text-[12px] font-bold flex items-center gap-1">
+                        <i class="fa-solid fa-bug"></i> BUG
+                    </span>
+                    <span class="px-3 py-1 rounded-full bg-[#FFF8DB] border border-[#FDE68A] text-[#D97706] text-[12px] font-bold flex items-center gap-1">
+                        <i class="fa-solid fa-hand-holding-heart"></i> HELP WANTED
+                    </span>
+                </div>
+
+                <p class="text-[#64748B] text-[16px] mb-[21px]">
+                    ${issue.description}
+                </p>
+
+                <div class="bg-[#F8FAFC] rounded-lg p-4 grid grid-cols-2 items-center mb-2 border border-slate-100">
+                    <div>
+                        <p class="text-[#64748B] text-[16px] mb-1">Assignee:</p>
+                        <p class="text-[#1F2937] text-[16px] font-semibold">${issue.assignee}</p>
+                    </div>
+                    
+                    <div class="text-left">
+                        <p class="text-[#64748B] text-[16px] mb-2">Priority:</p>
+                        <span class="bg-[#EF4444] text-white px-4 py-1.5 rounded-full text-[12px] font-medium uppercase">
+                            ${issue.priority}
+                        </span>
+                    </div>
+                </div>
+    `;
+
+    document.getElementById("modal").showModal();
+}
+
 const displayIssues = (issues) => {
     const issuesContainer = document.getElementById('issues-container');
     issuesContainer.innerHTML = "";
 
-
-    
 
     if (issues.length === 0) {
         issuesContainer.innerHTML = `
@@ -105,7 +166,7 @@ const displayIssues = (issues) => {
 
         issueDiv.innerHTML = `
         <div class="bg-white rounded-xl border border-slate-200 border-t-4 ${borderColor} shadow-sm flex flex-col p-5 h-full"
-        onclick="my_modal_5.showModal()">
+        onclick="loadIssueDetails(${issue.id})">
             
             <div class="flex justify-between items-start mb-3">
                 <span class="px-2 py-1 rounded-full text-[10px] font-bold uppercase ${priorityBg}">
