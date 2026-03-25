@@ -78,9 +78,9 @@ const displayIssues = (issues) => {
             </div>
 
             <h2 class="text-[16px] font-semibold text-[#1F2937] mb-2">${issue.title ? issue.title : "No Title Available"}</h2>
-            <p class="text-[#64748B] text-[12px]  mb-4">${issue.description ? issue.description : "No description provided."}</p>
+            <p class="text-[#64748B] text-[12px]  h-full mb-4">${issue.description ? issue.description : "No description provided."}</p>
 
-            <div class="flex flex-wrap gap-2 mb-4">
+            <div class=" flex flex-wrap gap-2 mb-4">
                 <span class="px-2 py-1 rounded-full bg-[#FECACA] border border-[#FEECEC] text-[#EF4444] text-[12px] font-medium flex items-center gap-1">
                     <i class="fa-solid fa-bug"></i> BUG
                 </span>
