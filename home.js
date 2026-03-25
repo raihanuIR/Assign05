@@ -24,10 +24,8 @@ const displayIssues = (issues) => {
     issues.forEach(issue => {
         const status = issue.status ? issue.status.toLowerCase() : 'open';
         const isClosed = status === 'closed';
-
         const borderColor = isClosed ? 'border-t-purple-400' : 'border-t-green-400';
-        const iconColor = isClosed ? 'text-purple-500' : 'text-green-500';
-        const iconClass = isClosed ? 'fa-circle-check' : 'fa-circle-notch';
+        
 
         const priority = issue.priority ? issue.priority.toLowerCase() : 'high';
 
@@ -41,27 +39,26 @@ const displayIssues = (issues) => {
         <div class="bg-white rounded-xl border border-slate-200 border-t-4 ${borderColor} shadow-sm flex flex-col p-5 h-full">
             
             <div class="flex justify-between items-start mb-3">
-                
-                <span class="px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide ${priorityBg}">
-                    ${issue.priority ? issue.priority : 'High'}
+                <span class="px-2 py-1 rounded-full text-[10px] font-bold uppercase ${priorityBg}">
+                    ${issue.priority}
                 </span>
             </div>
 
-            <h2 class="text-[16px] font-bold text-slate-800 leading-snug mb-2">${issue.title ? issue.title : "No Title Available"}</h2>
-            <p class="text-slate-500 text-[13px] line-clamp-3 mb-4">${issue.description ? issue.description : "No description provided."}</p>
+            <h2 class="text-[16px] font-semibold text-[#1F2937] mb-2">${issue.title ? issue.title : "No Title Available"}</h2>
+            <p class="text-[#64748B] text-[12px]  mb-4">${issue.description ? issue.description : "No description provided."}</p>
 
             <div class="flex flex-wrap gap-2 mb-4">
-                <span class="px-2 py-1 rounded-full border border-red-200 text-red-500 text-[10px] font-bold flex items-center gap-1">
+                <span class="px-2 py-1 rounded-full bg-[#FECACA] border border-[#FEECEC] text-[#EF4444] text-[12px] font-medium flex items-center gap-1">
                     <i class="fa-solid fa-bug"></i> BUG
                 </span>
-                <span class="px-2 py-1 rounded-full border border-orange-200 text-orange-500 text-[10px] font-bold flex items-center gap-1">
+                <span class="px-2 py-1 rounded-full bg-[#FFF8DB] border border-[#FDE68A] text-[#D97706] text-[12px] font-medium flex items-center gap-1">
                     <i class="fa-solid fa-hand-holding-heart"></i> HELP WANTED
                 </span>
             </div>
 
-            <div class="mt-auto border-t border-slate-100 pt-3 text-[12px] text-slate-400 font-medium">
-                <p>#${issue.id ? issue.id : '000'} by ${issue.author ? issue.author : 'admin'}</p>
-                <p>${issue.date ? issue.date : '1/15/2024'}</p>
+            <div class="mt-auto border-t border-slate-100 pt-3 text-[12px] text-[#64748B] ">
+                <p>#${issue.id} by ${issue.author}</p>
+                <p>${issue.createdAt}</p>
             </div>
             
         </div>
