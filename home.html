@@ -25,7 +25,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     
     <!-- Style Sheet -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body class="bg-[#F8FAFC]">
     <header>
@@ -58,9 +58,9 @@
 
     <section class="md:max-w-6xl mx-auto bg-white p-6 mt-6 rounded-lg shadow-sm mb-1">
             <div class="flex flex-wrap gap-2 ">
-                <button id="tab-all" onclick="loadIssues()" class="btn btn-primary">All</button>
-                <button id="tab-open" onclick="" class="btn btn-primary">Open</button>
-                <button id="tab-closed" onclick="" class="btn btn-primary">Closed</button>
+                <button id="tab-all" onclick="switchTab('all')" class="btn btn-primary">All</button>
+                <button id="tab-open" onclick="switchTab('open')" class="btn btn-primary">Open</button>
+                <button id="tab-closed" onclick="switchTab('closed')" class="btn btn-primary">Closed</button>
             </div>
     </section>
     

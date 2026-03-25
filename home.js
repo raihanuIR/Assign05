@@ -1,3 +1,34 @@
+let currentTab = "all";
+const tabActive = ["btn-primary"];
+const tabInactive = ["btn-outline", "border-slate-300", "text-slate-600", "bg-transparent"];
+
+function switchTab(tab) {
+    const tabs = ["all", "open", "closed"];
+    currentTab = tab;
+
+    for (const t of tabs) {
+        const tabName = document.getElementById("tab-" + t);
+        if (t === tab) {
+            tabName.classList.remove(...tabInactive);
+            tabName.classList.add(...tabActive);
+        } else {
+            tabName.classList.remove(...tabActive);
+            tabName.classList.add(...tabInactive);
+        }
+    }
+
+    const allCards = document.querySelectorAll(".issue-card");
+    for (const card of allCards) {
+        const cardStatus = card.getAttribute("data-status");
+        if (tab === "all" || cardStatus === tab) {
+            card.classList.remove("hidden");
+        } else {
+            card.classList.add("hidden");
+        }
+    }
+}
+
+
 const loadIssues = () => {
     fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues')
         .then(response => response.json())
@@ -25,7 +56,7 @@ const displayIssues = (issues) => {
         const status = issue.status ? issue.status.toLowerCase() : 'open';
         const isClosed = status === 'closed';
         const borderColor = isClosed ? 'border-t-purple-400' : 'border-t-green-400';
-        
+
 
         const priority = issue.priority ? issue.priority.toLowerCase() : 'high';
 
@@ -34,6 +65,8 @@ const displayIssues = (issues) => {
         if (priority === 'low') priorityBg = 'bg-slate-100 text-slate-500';
 
         const issueDiv = document.createElement('div');
+        issueDiv.className = "issue-card";
+        issueDiv.setAttribute("data-status", status);
 
         issueDiv.innerHTML = `
         <div class="bg-white rounded-xl border border-slate-200 border-t-4 ${borderColor} shadow-sm flex flex-col p-5 h-full">
@@ -66,6 +99,7 @@ const displayIssues = (issues) => {
 
         issuesContainer.appendChild(issueDiv);
     });
+    switchTab(currentTab);
 };
 
 loadIssues();
