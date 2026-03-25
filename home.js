@@ -104,7 +104,8 @@ const displayIssues = (issues) => {
         issueDiv.setAttribute("data-status", status);
 
         issueDiv.innerHTML = `
-        <div class="bg-white rounded-xl border border-slate-200 border-t-4 ${borderColor} shadow-sm flex flex-col p-5 h-full">
+        <div class="bg-white rounded-xl border border-slate-200 border-t-4 ${borderColor} shadow-sm flex flex-col p-5 h-full"
+        onclick="my_modal_5.showModal()">
             
             <div class="flex justify-between items-start mb-3">
                 <span class="px-2 py-1 rounded-full text-[10px] font-bold uppercase ${priorityBg}">
