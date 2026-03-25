@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github Issue Tracker</title>
+    
+    <!-- font awesome -->
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Font -->
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    
+    <!-- Tailwind CSS and DaisyUI -->
+    
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#F8FAFC]">
+    <header>
+        <div class="navbar bg-base-100 shadow-sm flex justify-around px-14 py-3">
+            <div class="flex-1">
+                <a class="btn btn-ghost text-xl">
+                    <img class="w-[35px] h-auto" src="./assets/github-logo.png" alt="GitHub Logo">
+                    <span class="font-bangla text-xl font-bold">GitHub Issues Tracker</span>
+                </a>
+            </div>
+            <div class="flex gap-2">
+                <input type="text" placeholder="Search issues..." class="input input-bordered rounded-md w-[250px]"/>
+                <div class="dropdown dropdown-end">
+                    <button class="btn btn-primary"><i class="fa-solid fa-plus"></i>New Issue</button>
+                    <ul tabindex="-1" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                        <li>
+                            <a class="justify-between">
+                                Profile
+                                <span class="badge">New</span>
+                            </a>
+                        </li>
+                        <li><a>Settings</a></li>
+                        <li><a>Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <section class="md:max-w-6xl mx-auto bg-white p-6 mt-6 rounded-lg shadow-sm mb-1">
+            <div class="flex flex-wrap gap-2 ">
+                <button id="tab-all" onclick="loadIssues()" class="btn btn-primary">All</button>
+                <button id="tab-open" onclick="" class="btn btn-primary">Open</button>
+                <button id="tab-closed" onclick="" class="btn btn-primary">Closed</button>
+            </div>
+    </section>
+    
+
+    <section
+        class="max-w-6xl mx-auto bg-white p-6 mt-6 rounded-xl shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border border-slate-100">
+    
+        <div class="flex gap-4 items-center">
+            <div class="w-12 h-12 rounded-full bg-[#F5F3FF] flex items-center justify-center shrink-0">
+                <img class="w-6 h-auto" src="./assets/Aperture.png" alt="Aperture Icon">
+            </div>
+            <div>
+                <p class="text-xl font-bold text-slate-800">50 Issues</p>
+                <p class="text-slate-500 text-sm">Track and manage your project issues</p>
+            </div>
+        </div>
+    
+        <div class="flex gap-6">
+            <div class="flex items-center gap-2">
+                <div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+                <p class="font-semibold text-slate-700 text-sm">Open</p>
+            </div>
+    
+            <div class="flex items-center gap-2">
+                <div class="w-2.5 h-2.5 rounded-full bg-purple-500"></div>
+                <p class="font-semibold text-slate-700 text-sm">Closed</p>
+            </div>
+        </div>
+    
+    </section>
+
+    <section id="issues-container"
+        class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 mb-10">
+    </section>
+    
+    <script src="home.js"></script>
+</body>
+</html>

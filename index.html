@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github Issue Tracker</title>
+
+    <!-- font awesome -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Font -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS and DaisyUI -->
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="bg-[#F8FAFC] min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-[520px] min-h-[768px] bg-white shadow-md rounded-xl border border-slate-200 p-8">
+
+        <div class="logo w-full flex justify-center pt-20">
+            <img src="assets/github-logo.png" alt="GitHub Logo" class="w-[100px] h-auto">
+        </div>
+        <div class="text-center mt-6">
+            <p class="text-2xl font-bold">GitHub Issues Tracker</p>
+            <p class="text-[#64748B] mt-1">Sign in to manage your issues</p>
+        </div>
+
+        <div class="card-body">
+            <fieldset class="fieldset">
+                <label class="label font-bold text-[16px] text-[#1F2937]">Username</label>
+                <input id="input-name" type="text" class="input w-full rounded-lg border-[#D1D5DB]" placeholder="Enter Username" />
+                <span class="text-[#4A00FF] text-[14px] mt-1">Default: admin</span>
+        
+                <label class="label font-bold text-[16px] text-[#1F2937] mt-3">Password</label>
+                <input id="input-password" type="password" class="input w-full rounded-lg border-[#D1D5DB]" placeholder="Enter Password" />
+                <span class="text-[#4A00FF] text-[14px] mt-1">Default: admin123</span>
+        
+                <button id="login-btn" class="btn btn-primary w-full border-none text-white font-semibold text-[16px] p-4 mt-6">Sign
+                    In</button>
+            </fieldset>
+        </div>
+    </div>
+
+    <script src="./login.js"></script>
+
+</body>
+
+</html>
