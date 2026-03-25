@@ -37,9 +37,10 @@
                 </a>
             </div>
             <div class="flex gap-2">
-                <input type="text" placeholder="Search issues..." class="input input-bordered rounded-md w-[250px]"/>
+                <input type="text" id="input-search" placeholder="Search issues..." class="input input-bordered rounded-md w-[250px]"/>
                 <div class="">
-                    <button class="btn btn-primary"><i class="fa-solid fa-plus"></i>New Issue</button>
+                    <button class="btn btn-primary " id="btn-search">Search</button>
+                </div>
             </div>
         </div>
     </header>
@@ -53,41 +54,45 @@
             </div>
     </section>
     
-
-    <section
-        class="max-w-6xl mx-auto bg-white p-6 mt-6 rounded-xl shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border border-slate-100">
     
-        <div class="flex gap-4 items-center">
-            <div class="w-12 h-12 rounded-full bg-[#F5F3FF] flex items-center justify-center shrink-0">
-                <img class="w-6 h-auto" src="./assets/Aperture.png" alt="Aperture Icon">
+    
+    <section id="issue-container" class="max-w-6xl mx-auto bg-white  mt-5 rounded-xl shadow-sm ">
+    
+        <div class="flex flex-col md:flex-row justify-between p-6 md:items-center gap-4 border-b-1 border-[#E4E4E7] w-full">
+            <div class="flex gap-4 items-center">
+                <div class="w-12 h-12 rounded-full bg-[#F5F3FF] flex items-center justify-center shrink-0">
+                    <img class="w-6 h-auto" src="./assets/Aperture.png" alt="Aperture Icon">
+                </div>
+                <div>
+                    <p class="text-xl font-bold text-slate-800"><span id="issue-count">0</span> Issues</p>
+                    <p class="text-slate-500 text-sm">Track and manage your project issues</p>
+                </div>
             </div>
-            <div>
-                <p  class="text-xl font-bold text-slate-800"><span id="issue-count">0</span> Issues</p>
-                <p class="text-slate-500 text-sm">Track and manage your project issues</p>
+            
+            <div class="flex gap-6">
+                <div class="flex items-center gap-2">
+                    <div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+                    <p class="font-semibold text-slate-700 text-sm">Open</p>
+                </div>
+            
+                <div class="flex items-center gap-2">
+                    <div class="w-2.5 h-2.5 rounded-full bg-purple-500"></div>
+                    <p class="font-semibold text-slate-700 text-sm">Closed</p>
+                </div>
             </div>
         </div>
-    
-        <div class="flex gap-6">
-            <div class="flex items-center gap-2">
-                <div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
-                <p class="font-semibold text-slate-700 text-sm">Open</p>
-            </div>
-    
-            <div class="flex items-center gap-2">
-                <div class="w-2.5 h-2.5 rounded-full bg-purple-500"></div>
-                <p class="font-semibold text-slate-700 text-sm">Closed</p>
-            </div>
-        </div>
-    
-    </section>
-
-    <section id="issues-container"
-        class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 mb-10">
-    </section>
-
-    <section>
         
+        <section id="issues-container"
+            class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-2 mb-10 p-6">
+        </section>
+
     </section>
+
+    <section id="spinner" class="flex items-center justify-center py-20">
+        <span class="loading loading-bars loading-xl"></span>
+    </section>
+
+    
     
     <script src="home.js"></script>
 </body>

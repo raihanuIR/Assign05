@@ -4,7 +4,19 @@ const tabInactive = ["btn-outline", "border-slate-300", "text-slate-600", "bg-tr
 
 const issueCount = document.getElementById("issue-count");
 
+const manageSpinner = (status) => {
+    if (status == true) {
+        document.getElementById("spinner").classList.remove("hidden");
+        document.getElementById("issues-container").classList.add("hidden");
+    } else {
+        document.getElementById("spinner").classList.add("hidden");
+        document.getElementById("issues-container").classList.remove("hidden");
+    }
+
+}
+
 function switchTab(tab) {
+    
     const tabs = ["all", "open", "closed"];
     currentTab = tab;
 
@@ -47,10 +59,9 @@ function updateStat() {
     issueCount.innerText = counts[currentTab];
 }
 
-updateStat();
-
 
 const loadIssues = () => {
+    manageSpinner(true);
     fetch('https://phi-lab-server.vercel.app/api/v1/lab/issues')
         .then(response => response.json())
         .then(json => {
@@ -63,6 +74,9 @@ const loadIssues = () => {
 const displayIssues = (issues) => {
     const issuesContainer = document.getElementById('issues-container');
     issuesContainer.innerHTML = "";
+
+
+    
 
     if (issues.length === 0) {
         issuesContainer.innerHTML = `
@@ -120,7 +134,24 @@ const displayIssues = (issues) => {
 
         issuesContainer.appendChild(issueDiv);
     });
+    
     switchTab(currentTab);
+    manageSpinner(false);
+    
 };
 
 loadIssues();
+
+
+document.getElementById("btn-search").addEventListener('click', () => {
+    const input = document.getElementById("input-search");
+    const searchValue = input.value.trim().toLowerCase();
+
+    fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`)
+        .then(res => res.json())
+        .then(data => {
+            const searchedIssues = data.data;
+            const matchedWord = searchedIssues.filter(issue => issue.title.toLowerCase().includes(searchValue));
+            displayIssues(matchedWord);
+        });
+});
