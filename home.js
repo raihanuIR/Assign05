@@ -2,6 +2,8 @@ let currentTab = "all";
 const tabActive = ["btn-primary"];
 const tabInactive = ["btn-outline", "border-slate-300", "text-slate-600", "bg-transparent"];
 
+const issueCount = document.getElementById("issue-count");
+
 function switchTab(tab) {
     const tabs = ["all", "open", "closed"];
     currentTab = tab;
@@ -26,7 +28,26 @@ function switchTab(tab) {
             card.classList.add("hidden");
         }
     }
+    updateStat();
 }
+
+
+function updateStat() {
+
+    const allCardsList = document.querySelectorAll(".issue-card");
+    const openCardsList = document.querySelectorAll('.issue-card[data-status="open"]');
+    const closedCardsList = document.querySelectorAll('.issue-card[data-status="closed"]');
+
+    const counts = {
+        all: allCardsList.length,
+        open: openCardsList.length,
+        closed: closedCardsList.length,
+    };
+
+    issueCount.innerText = counts[currentTab];
+}
+
+updateStat();
 
 
 const loadIssues = () => {
@@ -60,9 +81,9 @@ const displayIssues = (issues) => {
 
         const priority = issue.priority ? issue.priority.toLowerCase() : 'high';
 
-        let priorityBg = 'bg-red-50 text-red-500';
-        if (priority === 'medium') priorityBg = 'bg-orange-50 text-orange-500';
-        if (priority === 'low') priorityBg = 'bg-slate-100 text-slate-500';
+        let priorityBg = 'bg-[#FEECEC] text-[#EF4444]';
+        if (priority === 'medium') priorityBg = 'bg-[#FFF6D1] text-[#F59E0B]';
+        if (priority === 'low') priorityBg = 'bg-[#EEEFF2] text-[#9CA3AF]';
 
         const issueDiv = document.createElement('div');
         issueDiv.className = "issue-card";
