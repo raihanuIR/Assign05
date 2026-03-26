@@ -3,7 +3,7 @@ document.getElementById("login-btn").addEventListener("click", function() {
     const password = document.getElementById("input-password");
 
     if (username.value === "admin" && password.value === "admin123") {
-        alert("Login successful!");
+        //alert("Login successful!");
         // Redirect to the main page or dashboard
         window.location.href = "home.html"; // Change this to your actual dashboard page
     } else {
